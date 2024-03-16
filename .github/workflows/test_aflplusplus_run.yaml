@@ -7,21 +7,21 @@ on:
     push:
         branches:
             - "**"
-    jobs:
-        fuzzing_job:
-            runs_on: ubuntu-latest
-            name: AFL++ Fuzzing
-            steps: 
-                - name: Checkout Repository
-                  uses: actions/checkout@v2
-                
-                - name: Run AFL++ Fuzzing Action
-                  uses: ./aflplusplus_run/action.yaml
-                  with:
-                    campaign_name: "Test Campaign"
-                    fuzz_target: "./build/test"
-                    input_folder: "./build/test/input"
-                    timeout: 10
-                    time: 120
-                    qemu_mode: false
+jobs:
+    fuzzing_job:
+        runs-on: ubuntu-latest
+        name: AFL++ Fuzzing
+        steps: 
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+            
+            - name: Run AFL++ Fuzzing Action
+              uses: ./aflplusplus_run/action.yaml
+              with:
+                campaign_name: "Test Campaign"
+                fuzz_target: "./build/test"
+                input_folder: "./build/test/input"
+                timeout: 10
+                time: 120
+                qemu_mode: false
                 
