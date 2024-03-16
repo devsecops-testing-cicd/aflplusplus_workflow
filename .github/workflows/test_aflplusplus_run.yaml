@@ -16,7 +16,7 @@ jobs:
               uses: actions/checkout@v2
             
             - name: Run AFL++ Fuzzing Action
-              uses: ./aflplusplus_run/action.yaml
+              uses: ../aflplusplus_run/action.yaml
               with:
                 campaign_name: "Test Campaign"
                 fuzz_target: "./build/test"
