@@ -17,7 +17,11 @@ else
 	QFLAG=""
 fi
 
-mkdir -p "$CAMPAIGN_NAME/output"
+# Print out the AFL++ fuzzing command before executing it
+echo "Running AFL++ fuzzing command:"
+echo "afl-fuzz -M \"$CAMPAIGN_NAME\" -t \"$TIMEOUT\" \"$QFLAG\" -i \"$INPUT_FOLDER\" -o \"$CAMPAIGN_NAME/output\" -- \"$FUZZ_TARGET\" @@"
+
+# Run AFL++ fuzzing command
 
 afl-fuzz -M $CAMPAIGN_NAME -t $TIMEOUT $QFLAG -i $INPUT_FOLDER -o "$CAMPAIGN_NAME/output" -- $FUZZ_TARGET @@ 
 
