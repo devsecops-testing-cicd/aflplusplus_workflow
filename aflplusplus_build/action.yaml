@@ -21,3 +21,11 @@ runs:
     - ${{ inputs.source }}
     - ${{ inputs.compiler }}
     - ${{ inputs.use_asan }}
+env:
+  
+  SOURCE_FOLDER: ${{ inputs.source }}
+
+commands:
+  - name: Set up Docker
+    run: |
+      docker build -t aflplusplus-image --build-arg SOURCE_FOLDER=${SOURCE_FOLDER} --build-arg FILE_NAME=${FILE_NAME} .
