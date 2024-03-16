@@ -17,12 +17,17 @@ jobs:
               uses: actions/checkout@v2
             
             - name: Build with AFL++
+              id: build
               uses: ./aflplusplus_build
               with:
                 file_name: "test"
                 source_dir: "./demo_project"
                 compiler: "clang-lto"
                 use_asan: true
+
+            - name: Echo Binary Path
+              run: |
+                echo "Binary Path: ${{ steps.build.outputs.binary_path }}"
 
             - name: Create Input Folder
               run: mkdir -p ./input
@@ -31,6 +36,7 @@ jobs:
               run: echo "Input data" > ./input/input.txt
 
             - name: Run AFL++ Fuzzing Action
+              id: run
               uses: ./aflplusplus_run
               with:
                 campaign_name: "Test Campaign"
