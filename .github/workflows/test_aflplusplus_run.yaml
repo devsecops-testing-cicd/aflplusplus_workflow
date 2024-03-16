@@ -23,6 +23,12 @@ jobs:
                 compiler: "clang-lto"
                 use_asan: true
 
+            - name: Create Input Folder
+              run: mkdir -p ./build/test/input
+            
+            - name: Create Input File
+              run: echo "Input data" > ./build/test/input/input.txt
+
             - name: Run AFL++ Fuzzing Action
               uses: ./aflplusplus_run
               with:
