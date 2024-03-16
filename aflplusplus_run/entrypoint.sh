@@ -11,7 +11,7 @@ TIMEOUT=$4
 TIME=$5
 QEMU_MODE=$6
 
-if [ "$QEMU_MODE" == true ]; then
+if [ "$QEMU_MODE" = true ]; then
 	QFLAG="-Q"
 else
 	QFLAG=""
