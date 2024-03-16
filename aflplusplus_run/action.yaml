@@ -24,6 +24,7 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.campaign_name }}
+    - ${{ inputs.fuzz_target }}
     - ${{ inputs.input_folder }}
     - ${{ inputs.timeout }}
     - ${{ inputs.time }}
