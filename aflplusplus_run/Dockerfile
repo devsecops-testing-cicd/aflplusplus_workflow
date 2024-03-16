@@ -12,3 +12,6 @@ RUN chmod +x /afl/entrypoint.sh
 
 # Set the entrypoint for the container
 ENTRYPOINT ["/afl/entrypoint.sh"]
+
+# Define a volume for the binary path
+VOLUME /github/workspace
