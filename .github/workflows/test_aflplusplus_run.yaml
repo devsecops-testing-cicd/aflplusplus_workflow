@@ -29,8 +29,10 @@ jobs:
               run: |
                 echo "Binary Path: ${{ steps.build.outputs.binary_path }}"
 
-            - name: Create Input Folder
-              run: mkdir -p ./input
+            - name: Create Input/Output Folders
+              run: |
+                mkdir -p ./input
+                mkdir -p ./output
             
             - name: Create Input File
               run: echo "Input data" > ./input/input.txt
@@ -42,6 +44,7 @@ jobs:
                 campaign_name: "Test Campaign"
                 fuzz_target: "${{ steps.build.outputs.binary_path }}"
                 input_folder: "./input"
+                output_folder: "./output"
                 timeout: 10
                 time: 120
                 qemu_mode: false

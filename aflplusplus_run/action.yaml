@@ -10,6 +10,9 @@ inputs:
   input_folder:
     description: "Path of the input folder used as seed corpus"
     required: true
+  output_folder:
+    description: "Path of the output folder where crashes and state are saved"
+    required: true
   timeout:
     description: "Time to wait if the fuzzer hangs"
     default: 10
@@ -26,6 +29,7 @@ runs:
     - ${{ inputs.campaign_name }}
     - ${{ inputs.fuzz_target }}
     - ${{ inputs.input_folder }}
+    - ${{ inputs.output_folder }}
     - ${{ inputs.timeout }}
     - ${{ inputs.time }}
     - ${{ inputs.qemu_mode }}

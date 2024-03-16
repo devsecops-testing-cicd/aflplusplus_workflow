@@ -7,21 +7,22 @@ ROOT_DIR="afl"
 CAMPAIGN_NAME=$1
 FUZZ_TARGET=$2
 INPUT_FOLDER=$3
-TIMEOUT=$4
-TIME=$5
-QEMU_MODE=$6
-
-if [ "$QEMU_MODE" = true ]; then
-	QFLAG="-Q"
-else
-	QFLAG=""
-fi
+OUTPUT_FOLDER=$4
+TIMEOUT=$5
+TIME=$6
+QEMU_MODE=$7
 
 # Print out the AFL++ fuzzing command before executing it
 echo "Running AFL++ fuzzing command:"
-echo "afl-fuzz -M \"$CAMPAIGN_NAME\" -t \"$TIMEOUT\" \"$QFLAG\" -i \"$INPUT_FOLDER\" -o \"$CAMPAIGN_NAME/output\" -- \"$FUZZ_TARGET\" @@"
+if [ "$QEMU_MODE" = true ]; then
+	echo "afl-fuzz -Q -M \"$CAMPAIGN_NAME\" -t \"$TIMEOUT\" -i \"$INPUT_FOLDER\" -o \"$OUTPUT_FOLDER\" -- \"$FUZZ_TARGET\" @@"
+	afl-fuzz -Q -M $CAMPAIGN_NAME -t $TIMEOUT -i $INPUT_FOLDER -o $OUTPUT_FOLDER -- $FUZZ_TARGET @@ 
+else
+	echo "afl-fuzz -M \"$CAMPAIGN_NAME\" -t \"$TIMEOUT\" -i \"$INPUT_FOLDER\" -o \"$OUTPUT_FOLDER\" -- \"$FUZZ_TARGET\" @@"
+	afl-fuzz -M $CAMPAIGN_NAME -t $TIMEOUT -i $INPUT_FOLDER -o $OUTPUT_FOLDER -- $FUZZ_TARGET @@ 
 
-# Run AFL++ fuzzing command
+fi
 
-afl-fuzz -M $CAMPAIGN_NAME -t $TIMEOUT $QFLAG -i $INPUT_FOLDER -o "$CAMPAIGN_NAME/output" -- $FUZZ_TARGET @@ 
+
+
 
