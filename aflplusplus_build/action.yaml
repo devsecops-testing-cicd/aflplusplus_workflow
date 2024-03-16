@@ -13,19 +13,12 @@ inputs:
   use_asan:
     description: "Compile target with ASAN"
     default: true 
+
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "Dockerfile" 
   args:
     - ${{ inputs.file_name }}
-    - ${{ inputs.source }}
+    - ${{ inputs.source_dir }}
     - ${{ inputs.compiler }}
     - ${{ inputs.use_asan }}
-env:
-  
-  SOURCE_FOLDER: ${{ inputs.source }}
-
-commands:
-  - name: Set up Docker
-    run: |
-      docker build -t aflplusplus-image --build-arg SOURCE_FOLDER=${SOURCE_FOLDER} --build-arg FILE_NAME=${FILE_NAME} .
