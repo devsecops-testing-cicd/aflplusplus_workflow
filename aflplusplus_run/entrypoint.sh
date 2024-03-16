@@ -14,13 +14,13 @@ QEMU_MODE=$7
 
 # Print out the AFL++ fuzzing command before executing it
 echo "Running AFL++ fuzzing command:"
+
 if [ "$QEMU_MODE" = true ]; then
 	echo "afl-fuzz -Q -M \"$CAMPAIGN_NAME\" -t \"$TIMEOUT\" -i \"$INPUT_FOLDER\" -o \"$OUTPUT_FOLDER\" -- \"$FUZZ_TARGET\" @@"
 	afl-fuzz -Q -M $CAMPAIGN_NAME -t $TIMEOUT -i $INPUT_FOLDER -o $OUTPUT_FOLDER -- $FUZZ_TARGET @@ 
 else
 	echo "afl-fuzz -M \"$CAMPAIGN_NAME\" -t \"$TIMEOUT\" -i \"$INPUT_FOLDER\" -o \"$OUTPUT_FOLDER\" -- \"$FUZZ_TARGET\" @@"
 	afl-fuzz -M $CAMPAIGN_NAME -t $TIMEOUT -i $INPUT_FOLDER -o $OUTPUT_FOLDER -- $FUZZ_TARGET @@ 
-
 fi
 
 

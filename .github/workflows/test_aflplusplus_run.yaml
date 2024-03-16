@@ -41,7 +41,7 @@ jobs:
               id: run
               uses: ./aflplusplus_run
               with:
-                campaign_name: "Test Campaign"
+                campaign_name: "TestCampaign" # no spaces allowed
                 fuzz_target: "${{ steps.build.outputs.binary_path }}"
                 input_folder: "./input"
                 output_folder: "./output"
