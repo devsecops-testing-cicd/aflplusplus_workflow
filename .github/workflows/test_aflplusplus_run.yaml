@@ -19,6 +19,7 @@ jobs:
             - name: Build with AFL++
               uses: ./aflplusplus_build
               with:
+                file_name: "test"
                 source_dir: "./demo_project"
                 compiler: "clang-lto"
                 use_asan: true
