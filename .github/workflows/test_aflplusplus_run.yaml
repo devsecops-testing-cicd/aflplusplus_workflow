@@ -25,17 +25,17 @@ jobs:
                 use_asan: true
 
             - name: Create Input Folder
-              run: mkdir -p ./test/input
+              run: mkdir -p ./input
             
             - name: Create Input File
-              run: echo "Input data" > ./test/input/input.txt
+              run: echo "Input data" > ./input/input.txt
 
             - name: Run AFL++ Fuzzing Action
               uses: ./aflplusplus_run
               with:
                 campaign_name: "Test Campaign"
                 fuzz_target: "${{ steps.build.outputs.binary_path }}"
-                input_folder: "./test/input"
+                input_folder: "./input"
                 timeout: 10
                 time: 120
                 qemu_mode: false
