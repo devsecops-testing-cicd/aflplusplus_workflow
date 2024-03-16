@@ -1,0 +1,51 @@
+---
+name: AFLPlusPlus run test
+
+on:
+    schedule:
+        - cron: "0 10 * * *"
+    push:
+        branches:
+        - "**"
+
+jobs:
+    fuzzing_job:
+        runs-on: ubuntu-latest
+        name: AFL++ Fuzzing
+        steps: 
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+            
+            - name: Build with AFL++
+              id: build
+              uses: ./aflplusplus_build
+              with:
+                file_name: "test"
+                source_dir: "./demo_project"
+                compiler: "clang-lto"
+                use_asan: true
+
+            - name: Echo Binary Path
+              run: |
+                echo "Binary Path: ${{ steps.build.outputs.binary_path }}"
+
+            - name: Create Input/Output Folders
+              run: |
+                mkdir -p ./input
+                mkdir -p ./output
+            
+            - name: Create Input File
+              run: echo "Input data" > ./input/input.txt
+
+            - name: Run AFL++ Fuzzing Action
+              id: run
+              uses: ./aflplusplus_run
+              with:
+                campaign_name: "TestCampaign" # no spaces allowed
+                fuzz_target: "${{ steps.build.outputs.binary_path }}"
+                input_folder: "./input"
+                output_folder: "./output"
+                timeout: 10
+                time: 120
+                qemu_mode: false
+                

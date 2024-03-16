@@ -1,0 +1,24 @@
+name: "AFL++ fuzz test build action"
+description: "Action to build fuzz tests using AFL++"
+inputs:
+  file_name:
+    description: "Name of the target source file"
+    required: true
+  source:
+    description: "Path of the target source"
+    required: true
+  compiler:
+    description: "AFL++ Compiler"
+    default: "clang-lto"
+  use_asan:
+    description: "Compile target with ASAN"
+    default: true 
+
+runs:
+  using: "docker"
+  image: "Dockerfile" 
+  args:
+    - ${{ inputs.file_name }}
+    - ${{ inputs.source_dir }}
+    - ${{ inputs.compiler }}
+    - ${{ inputs.use_asan }}
