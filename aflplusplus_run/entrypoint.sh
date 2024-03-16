@@ -19,5 +19,5 @@ fi
 
 mkdir -p "$CAMPAIGN_NAME/output"
 
-afl-fuzz -M $CAMPAIGN_NAME -t $TIMEOUT $QEMU_MODE -i $INPUT_FOLDER -o "$CAMPAIGN_NAME/output" $FUZZ_TARGET @@ 
+afl-fuzz -M $CAMPAIGN_NAME -t $TIMEOUT $QEMU_MODE -i $INPUT_FOLDER -o "$CAMPAIGN_NAME/output" -- $FUZZ_TARGET @@ 
 
