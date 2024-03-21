@@ -1,4 +1,4 @@
-# AFLPlusPlus action
+# AFL++ action test repository
 
 
 ## Background
