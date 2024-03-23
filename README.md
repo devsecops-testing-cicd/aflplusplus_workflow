@@ -10,14 +10,14 @@ The motivation is to create action is where the local workstation is exhausted, 
 
 ### Compiling the target project with AFLPlusPlus
 
-Use the [aflplusplus_build](./aflplusplus_build/action.yaml) to build the target with AFL++ compilers.
+Use the [aflplusplus_build](https://github.com/marketplace/actions/afl-fuzz-test-build-action) to build the target with AFL++ compilers.
 
 Currently supported build platforms
 - CMake
 
 ### Fuzzing the target project with AFLPlusPlus
 
-Use the [aflplusplus_run](./aflplusplus_run/action.yaml) to run AFL++ fuzz test.
+Use the [aflplusplus_run](https://github.com/marketplace/actions/afl-fuzzing-action) to run AFL++ fuzz test.
 
 ## History
  
