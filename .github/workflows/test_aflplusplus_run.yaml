@@ -16,9 +16,9 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v2
             
-            - name: Build with AFL++
+            - name: AFL++ fuzz test build action
               id: build
-              uses: ./aflplusplus_build
+              uses: g0ku704/aflplusplus_build_action@v1.0.0 
               with:
                 file_name: "test"
                 source_dir: "./demo_project"
@@ -37,9 +37,9 @@ jobs:
             - name: Create Input File
               run: echo "Input data" > ./input/input.txt
 
-            - name: Run AFL++ Fuzzing Action
+            - name: AFL++ fuzzing action 
               id: run
-              uses: ./aflplusplus_run
+              uses: g0ku704/aflplusplus_fuzz_action@v1.0.0
               with:
                 campaign_name: "TestCampaign" # no spaces allowed
                 fuzz_target: "${{ steps.build.outputs.binary_path }}"
