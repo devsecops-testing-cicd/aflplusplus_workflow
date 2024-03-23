@@ -1,4 +1,4 @@
-# AFL++ action test repository
+# AFL++ workflow test repository
 
 
 ## Background
