@@ -19,7 +19,7 @@ jobs:
               uses: g0ku704/aflplusplus_build_action@v1.0.0 
               with:
                 file_name: "test"
-                source_dir: "./demo_project"
+                source: "./demo_project"
                 compiler: "clang-lto"
                 use_asan: true
 
